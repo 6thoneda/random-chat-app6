@@ -27,17 +27,6 @@ import './App.css';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    // Check if user has completed initial setup
-    const languageSelected = localStorage.getItem('ajnabicam_language_selected');
-    const userSetupComplete = localStorage.getItem('ajnabicam_user_data');
-    
-    if (languageSelected && userSetupComplete) {
-      setIsInitialized(true);
-    }
-  }, []);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
