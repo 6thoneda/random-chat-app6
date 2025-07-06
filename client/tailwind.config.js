@@ -53,8 +53,12 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+      animation: {
+        'fade-in': 'fade-in 0.6s ease-out',
+        'slide-down': 'slide-down 0.4s ease-out',
+      }
   	}
   },
-  plugins: [require("tailwindcss-animate"), require('tailwind-scrollbar-hide')],
+  plugins: [require("tailwindcss-animate")],
 }
