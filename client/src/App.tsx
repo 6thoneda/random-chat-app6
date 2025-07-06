@@ -1,9 +1,11 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import VideoChat from "./screens/VideoChat";
 import SplashScreen from "./components/SplashScreen";
+import LanguageSelectionScreen from "./screens/LanguageSelectionScreen";
 import ReferToUnlock from "./screens/ReferToUnlock";
 import ReferralCodeScreen from "./screens/ReferralCode";
 import GenderSelect from "./screens/GenderSelect";
@@ -19,10 +21,32 @@ import { useNavigate } from "react-router-dom";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
+  const [appReady, setAppReady] = useState(false);
   const navigate = useNavigate();
+  const { i18n, ready } = useTranslation();
 
   useEffect(() => {
-    if (!showSplash) {
+    // Wait for i18n to be ready
+    if (ready) {
+      setAppReady(true);
+    }
+  }, [ready]);
+
+  useEffect(() => {
+    if (!showSplash && appReady) {
+      // Check if language has been selected
+      const languageSelected = localStorage.getItem("ajnabicam_language_selected");
+      const savedLanguage = localStorage.getItem("ajnabicam_language");
+      
+      if (savedLanguage && i18n.language !== savedLanguage) {
+        i18n.changeLanguage(savedLanguage);
+      }
+      
+      if (!languageSelected) {
+        navigate("/language-selection", { replace: true });
+        return;
+      }
+
       // Check if user has completed setup
       const userData = localStorage.getItem("ajnabicam_user_data");
       const firstOpen = localStorage.getItem("ajnabicam_first_open");
@@ -34,13 +58,14 @@ function App() {
         navigate("/user-setup", { replace: true });
       }
     }
-  }, [showSplash, navigate]);
+  }, [showSplash, appReady, navigate, i18n]);
 
   const handleSplashComplete = () => {
     setShowSplash(false);
   };
 
-  if (showSplash) {
+  // Show splash screen while app is loading
+  if (showSplash || !appReady) {
     return <SplashScreen onComplete={handleSplashComplete} />;
   }
 
@@ -48,6 +73,7 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/language-selection" element={<LanguageSelectionScreen />} />
         <Route path="/user-setup" element={<UserSetup />} />
         <Route path="/premium-trial" element={<ReferToUnlock />} />
         <Route path="/home" element={<HomePage />} />

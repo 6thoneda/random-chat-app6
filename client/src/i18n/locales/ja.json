@@ -1,0 +1,31 @@
+{
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラー",
+    "success": "成功",
+    "cancel": "キャンセル",
+    "confirm": "確認",
+    "save": "保存",
+    "delete": "削除",
+    "edit": "編集",
+    "back": "戻る",
+    "next": "次へ",
+    "skip": "スキップ",
+    "done": "完了",
+    "yes": "はい",
+    "no": "いいえ",
+    "ok": "OK",
+    "close": "閉じる"
+  },
+  "app": {
+    "name": "アジナビカム",
+    "tagline": "見知らぬ人と瞬時に繋がる",
+    "description": "ランダムビデオチャット"
+  },
+  "language": {
+    "title": "言語を選択",
+    "subtitle": "続行するには希望の言語を選択してください",
+    "continue": "続行",
+    "change": "言語を変更"
+  }
+}

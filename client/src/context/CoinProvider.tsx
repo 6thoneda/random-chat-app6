@@ -27,45 +27,77 @@ export const CoinProvider = ({ children }: CoinProviderProps) => {
 
   // Initialize coins on mount
   useEffect(() => {
-    const savedCoins = localStorage.getItem("ajnabicam_coins");
-    const hasOnboarded = localStorage.getItem("ajnabicam_onboarded");
-    
-    if (savedCoins) {
-      setCoins(parseInt(savedCoins));
-    } else if (!hasOnboarded) {
-      // Give 30 free coins for new users
+    try {
+      const savedCoins = localStorage.getItem("ajnabicam_coins");
+      const hasOnboarded = localStorage.getItem("ajnabicam_onboarded");
+      
+      if (savedCoins) {
+        const parsedCoins = parseInt(savedCoins);
+        if (!isNaN(parsedCoins) && parsedCoins >= 0) {
+          setCoins(parsedCoins);
+        } else {
+          // Invalid coin data, reset
+          setCoins(30);
+          localStorage.setItem("ajnabicam_coins", "30");
+        }
+      } else if (!hasOnboarded) {
+        // Give 30 free coins for new users
+        setCoins(30);
+        localStorage.setItem("ajnabicam_coins", "30");
+        localStorage.setItem("ajnabicam_onboarded", "true");
+      }
+    } catch (error) {
+      console.error("Error initializing coins:", error);
       setCoins(30);
       localStorage.setItem("ajnabicam_coins", "30");
-      localStorage.setItem("ajnabicam_onboarded", "true");
     }
   }, []);
 
   const addCoins = (amount: number) => {
-    const newAmount = coins + amount;
-    setCoins(newAmount);
-    localStorage.setItem("ajnabicam_coins", newAmount.toString());
+    try {
+      if (amount > 0) {
+        const newAmount = coins + amount;
+        setCoins(newAmount);
+        localStorage.setItem("ajnabicam_coins", newAmount.toString());
+      }
+    } catch (error) {
+      console.error("Error adding coins:", error);
+    }
   };
 
   const deductCoins = (amount: number): boolean => {
-    if (coins >= amount) {
-      const newAmount = coins - amount;
-      setCoins(newAmount);
-      localStorage.setItem("ajnabicam_coins", newAmount.toString());
-      return true;
+    try {
+      if (amount > 0 && coins >= amount) {
+        const newAmount = coins - amount;
+        setCoins(newAmount);
+        localStorage.setItem("ajnabicam_coins", newAmount.toString());
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error deducting coins:", error);
+      return false;
     }
-    return false;
   };
 
   const watchAd = () => {
-    // Simulate watching an ad
-    addCoins(4);
-    alert("🎉 You earned 4 coins for watching an ad!");
+    try {
+      // Simulate watching an ad
+      addCoins(4);
+      alert("🎉 You earned 4 coins for watching an ad!");
+    } catch (error) {
+      console.error("Error watching ad:", error);
+    }
   };
 
   const referFriend = () => {
-    // Simulate successful referral
-    addCoins(25);
-    alert("🎉 You earned 25 coins for referring a friend!");
+    try {
+      // Simulate successful referral
+      addCoins(25);
+      alert("🎉 You earned 25 coins for referring a friend!");
+    } catch (error) {
+      console.error("Error referring friend:", error);
+    }
   };
 
   return (

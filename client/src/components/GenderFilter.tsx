@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Users, User, Crown } from "lucide-react";
@@ -12,11 +12,30 @@ interface GenderFilterProps {
 
 export default function GenderFilter({ isPremium, onGenderSelect, onUpgrade }: GenderFilterProps) {
   const [selectedGender, setSelectedGender] = useState<string>("any");
+  const { t } = useTranslation();
 
   const genderOptions = [
-    { id: "any", label: "Anyone", icon: Users, description: "Connect with all genders", emoji: "👥" },
-    { id: "male", label: "Male", icon: User, description: "Connect with males only", emoji: "👨" },
-    { id: "female", label: "Female", icon: User, description: "Connect with females only", emoji: "👩" }
+    { 
+      id: "any", 
+      label: t('home.genderFilter.anyone'), 
+      icon: Users, 
+      description: t('home.genderFilter.anyoneDesc'), 
+      emoji: "👥" 
+    },
+    { 
+      id: "male", 
+      label: t('home.genderFilter.male'), 
+      icon: User, 
+      description: t('home.genderFilter.maleDesc'), 
+      emoji: "👨" 
+    },
+    { 
+      id: "female", 
+      label: t('home.genderFilter.female'), 
+      icon: User, 
+      description: t('home.genderFilter.femaleDesc'), 
+      emoji: "👩" 
+    }
   ];
 
   const handleGenderChange = (gender: string) => {
@@ -33,7 +52,7 @@ export default function GenderFilter({ isPremium, onGenderSelect, onUpgrade }: G
       <CardHeader className="pb-3 bg-gradient-to-r from-rose-50 to-pink-50 rounded-t-lg">
         <CardTitle className="text-lg flex items-center gap-2 text-rose-700">
           <Users className="h-5 w-5" />
-          Gender Preference
+          {t('home.genderFilter.title')}
           {!isPremium && <Crown className="h-4 w-4 text-yellow-500" />}
         </CardTitle>
       </CardHeader>
@@ -71,7 +90,7 @@ export default function GenderFilter({ isPremium, onGenderSelect, onUpgrade }: G
         {!isPremium && (
           <div className="mt-4 p-4 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl text-center border border-purple-200">
             <p className="text-sm text-purple-700 mb-3 font-medium">
-              🎯 Unlock gender filtering with Premium!
+              {t('home.genderFilter.unlock')}
             </p>
             <Button
               size="sm"
@@ -79,7 +98,7 @@ export default function GenderFilter({ isPremium, onGenderSelect, onUpgrade }: G
               className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-full px-6 shadow-md transform hover:scale-105 transition-all duration-200"
             >
               <Crown className="h-4 w-4 mr-2" />
-              Upgrade Now
+              {t('home.genderFilter.upgradeNow')}
             </Button>
           </div>
         )}

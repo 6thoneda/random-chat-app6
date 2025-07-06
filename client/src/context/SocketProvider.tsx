@@ -47,9 +47,20 @@ export const SocketProvider = ({children} : {children: ReactNode}) => {
             setSocket(newSocket);
 
             return () => {
-                newSocket.close();
+                if (newSocket && newSocket.connected) {
+                    newSocket.close();
+                }
             };
         }
+    }, [socket]);
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (socket && socket.connected) {
+                socket.close();
+            }
+        };
     }, [socket]);
 
     return (

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Coins, Gift, Play, Users, Crown, X, Star, Zap } from "lucide-react";
@@ -13,6 +14,7 @@ interface TreasureChestProps {
 export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
   const { coins, watchAd, referFriend } = useCoin();
   const { isPremium } = usePremium();
+  const { t } = useTranslation();
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -27,14 +29,18 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
 
   const coinPacks = [
     { coins: 50, price: "₹29", popular: false, bonus: "" },
-    { coins: 120, price: "₹59", popular: true, bonus: "+20 Bonus!" },
-    { coins: 250, price: "₹99", popular: false, bonus: "+50 Bonus!" },
-    { coins: 500, price: "₹179", popular: false, bonus: "+100 Bonus!" },
+    { coins: 120, price: "₹59", popular: true, bonus: t('coins.bonus', { count: 20 }) },
+    { coins: 250, price: "₹99", popular: false, bonus: t('coins.bonus', { count: 50 }) },
+    { coins: 500, price: "₹179", popular: false, bonus: t('coins.bonus', { count: 100 }) },
   ];
 
   const handlePurchasePack = (pack: typeof coinPacks[0]) => {
     // Simulate in-app purchase
-    alert(`🎉 You purchased ${pack.coins} coins for ${pack.price}!`);
+    alert(t('notifications.coinsPurchased', { 
+      defaultValue: `🎉 You purchased ${pack.coins} coins for ${pack.price}!`,
+      coins: pack.coins,
+      price: pack.price
+    }));
     onClose();
   };
 
@@ -74,14 +80,14 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
           </div>
 
           <CardTitle className="text-2xl font-bold bg-gradient-to-r from-rose-600 to-pink-600 bg-clip-text text-transparent">
-            Coin Store! 💰
+            {t('coins.title')}
           </CardTitle>
           
           {/* Current Balance */}
           <div className="bg-white/80 backdrop-blur-sm rounded-full px-6 py-2 inline-block mt-2 border border-rose-200">
             <div className="flex items-center gap-2">
               <Coins className="h-5 w-5 text-rose-600" />
-              <span className="font-bold text-lg text-rose-700">{coins} Coins</span>
+              <span className="font-bold text-lg text-rose-700">{t('coins.currentBalance', { count: coins })}</span>
             </div>
           </div>
         </CardHeader>
@@ -91,7 +97,7 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
           <div className="space-y-3">
             <h3 className="font-semibold text-rose-800 text-center flex items-center justify-center gap-2">
               <Gift className="h-5 w-5" />
-              Earn Free Coins
+              {t('coins.earnFree')}
             </h3>
             
             <div className="grid grid-cols-1 gap-3">
@@ -101,8 +107,8 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
               >
                 <Play className="h-5 w-5 mr-2" />
                 <div className="flex flex-col items-start">
-                  <span>Watch Ad</span>
-                  <span className="text-xs text-green-100">Get 4 coins instantly</span>
+                  <span>{t('coins.watchAd')}</span>
+                  <span className="text-xs text-green-100">{t('coins.watchAdDesc')}</span>
                 </div>
                 <div className="ml-auto bg-green-400 px-2 py-1 rounded-full text-xs font-bold">
                   +4
@@ -115,8 +121,8 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
               >
                 <Users className="h-5 w-5 mr-2" />
                 <div className="flex flex-col items-start">
-                  <span>Refer Friend</span>
-                  <span className="text-xs text-blue-100">Share & earn big</span>
+                  <span>{t('coins.referFriend')}</span>
+                  <span className="text-xs text-blue-100">{t('coins.referFriendDesc')}</span>
                 </div>
                 <div className="ml-auto bg-blue-400 px-2 py-1 rounded-full text-xs font-bold">
                   +25
@@ -129,7 +135,7 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
           <div className="space-y-3">
             <h3 className="font-semibold text-rose-800 text-center flex items-center justify-center gap-2">
               <Zap className="h-5 w-5" />
-              Coin Packs
+              {t('coins.coinPacks')}
             </h3>
             
             <div className="grid grid-cols-2 gap-3">
@@ -146,7 +152,7 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
                   {pack.popular && (
                     <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-rose-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full shadow-md">
                       <Star className="h-3 w-3 inline mr-1" />
-                      Popular!
+                      {t('coins.popular')}
                     </div>
                   )}
                   <div className="text-center">
@@ -158,7 +164,7 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
                       <div className="text-xs text-green-600 font-bold mb-1">{pack.bonus}</div>
                     )}
                     <div className="text-xl font-bold text-rose-800">{pack.price}</div>
-                    <div className="text-xs text-rose-500 mt-1">Best Value!</div>
+                    <div className="text-xs text-rose-500 mt-1">{t('coins.bestValue')}</div>
                   </div>
                 </div>
               ))}
@@ -170,30 +176,27 @@ export default function TreasureChest({ isOpen, onClose }: TreasureChestProps) {
             <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-4 text-center border-2 border-purple-200">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Crown className="h-5 w-5 text-purple-600" />
-                <span className="font-semibold text-purple-700">Go Premium!</span>
+                <span className="font-semibold text-purple-700">{t('coins.goPremium')}</span>
               </div>
               <p className="text-sm text-purple-600 mb-3">
-                Get unlimited chat time and never worry about coins again!
+                {t('coins.goPremiumDesc')}
               </p>
               <Button
                 size="sm"
                 className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white transform hover:scale-105 transition-all duration-200"
               >
                 <Crown className="h-4 w-4 mr-2" />
-                Upgrade to Premium
+                {t('coins.upgradeToPremium')}
               </Button>
             </div>
           )}
 
           <div className="text-center space-y-2">
             <p className="text-xs text-rose-500 font-medium">
-              💳 Secure payments • 🔒 Safe transactions • 💯 Instant delivery
+              {t('coins.securePayments')}
             </p>
             <div className="flex justify-center gap-4 text-xs text-rose-400">
-              <span>✓ UPI</span>
-              <span>✓ Cards</span>
-              <span>✓ Wallets</span>
-              <span>✓ Net Banking</span>
+              <span>{t('coins.paymentMethods')}</span>
             </div>
           </div>
         </CardContent>

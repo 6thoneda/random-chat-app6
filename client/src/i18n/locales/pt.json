@@ -1,0 +1,31 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "skip": "Pular",
+    "done": "Concluído",
+    "yes": "Sim",
+    "no": "Não",
+    "ok": "OK",
+    "close": "Fechar"
+  },
+  "app": {
+    "name": "AjnabiCam",
+    "tagline": "Conecte-se instantaneamente com estranhos",
+    "description": "Chat de Vídeo Aleatório"
+  },
+  "language": {
+    "title": "Escolha seu idioma",
+    "subtitle": "Selecione seu idioma preferido para continuar",
+    "continue": "Continuar",
+    "change": "Mudar idioma"
+  }
+}

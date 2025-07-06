@@ -1,0 +1,31 @@
+{
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류",
+    "success": "성공",
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "back": "뒤로",
+    "next": "다음",
+    "skip": "건너뛰기",
+    "done": "완료",
+    "yes": "예",
+    "no": "아니오",
+    "ok": "확인",
+    "close": "닫기"
+  },
+  "app": {
+    "name": "아즈나비캠",
+    "tagline": "낯선 사람과 즉시 연결",
+    "description": "랜덤 비디오 채팅"
+  },
+  "language": {
+    "title": "언어 선택",
+    "subtitle": "계속하려면 선호하는 언어를 선택하세요",
+    "continue": "계속",
+    "change": "언어 변경"
+  }
+}

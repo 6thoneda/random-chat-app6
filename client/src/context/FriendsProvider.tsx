@@ -39,70 +39,93 @@ export const FriendsProvider = ({ children }: FriendsProviderProps) => {
 
   // Load friends from localStorage on mount
   useEffect(() => {
-    const savedFriends = localStorage.getItem("ajnabicam_friends");
-    if (savedFriends) {
-      try {
+    try {
+      const savedFriends = localStorage.getItem("ajnabicam_friends");
+      if (savedFriends) {
         const parsedFriends = JSON.parse(savedFriends).map((friend: any) => ({
           ...friend,
           addedAt: new Date(friend.addedAt),
           lastSeen: friend.lastSeen ? new Date(friend.lastSeen) : undefined
         }));
         setFriends(parsedFriends);
-      } catch (error) {
-        console.error("Error loading friends:", error);
-        setFriends([]);
       }
+    } catch (error) {
+      console.error("Error loading friends:", error);
+      setFriends([]);
+      localStorage.removeItem("ajnabicam_friends");
     }
   }, []);
 
   // Save friends to localStorage whenever friends change
   useEffect(() => {
-    if (friends.length >= 0) {
-      localStorage.setItem("ajnabicam_friends", JSON.stringify(friends));
+    try {
+      if (friends.length >= 0) {
+        localStorage.setItem("ajnabicam_friends", JSON.stringify(friends));
+      }
+    } catch (error) {
+      console.error("Error saving friends:", error);
     }
   }, [friends]);
 
   const addFriend = (newFriend: Omit<Friend, 'addedAt'>): boolean => {
-    // Check if user has premium
-    const isPremium = localStorage.getItem("premium_status") === "true";
-    
-    // Check if already at limit for free users
-    if (!isPremium && friends.length >= maxFreeLimit) {
-      return false; // Cannot add more friends
+    try {
+      // Check if user has premium
+      const isPremium = localStorage.getItem("premium_status") === "true";
+      
+      // Check if already at limit for free users
+      if (!isPremium && friends.length >= maxFreeLimit) {
+        return false; // Cannot add more friends
+      }
+
+      // Check if friend already exists
+      if (friends.some(friend => friend.id === newFriend.id)) {
+        return true; // Already friends
+      }
+
+      const friendWithDate: Friend = {
+        ...newFriend,
+        addedAt: new Date()
+      };
+
+      setFriends(prev => [...prev, friendWithDate]);
+      return true;
+    } catch (error) {
+      console.error("Error adding friend:", error);
+      return false;
     }
-
-    // Check if friend already exists
-    if (friends.some(friend => friend.id === newFriend.id)) {
-      return true; // Already friends
-    }
-
-    const friendWithDate: Friend = {
-      ...newFriend,
-      addedAt: new Date()
-    };
-
-    setFriends(prev => [...prev, friendWithDate]);
-    return true;
   };
 
   const removeFriend = (friendId: string) => {
-    setFriends(prev => prev.filter(friend => friend.id !== friendId));
+    try {
+      setFriends(prev => prev.filter(friend => friend.id !== friendId));
+    } catch (error) {
+      console.error("Error removing friend:", error);
+    }
   };
 
   const updateFriendStatus = (friendId: string, isOnline: boolean) => {
-    setFriends(prev => prev.map(friend => 
-      friend.id === friendId 
-        ? { 
-            ...friend, 
-            isOnline, 
-            lastSeen: isOnline ? undefined : new Date() 
-          }
-        : friend
-    ));
+    try {
+      setFriends(prev => prev.map(friend => 
+        friend.id === friendId 
+          ? { 
+              ...friend, 
+              isOnline, 
+              lastSeen: isOnline ? undefined : new Date() 
+            }
+          : friend
+      ));
+    } catch (error) {
+      console.error("Error updating friend status:", error);
+    }
   };
 
   const getFriendById = (friendId: string): Friend | undefined => {
-    return friends.find(friend => friend.id === friendId);
+    try {
+      return friends.find(friend => friend.id === friendId);
+    } catch (error) {
+      console.error("Error getting friend by ID:", error);
+      return undefined;
+    }
   };
 
   const isPremium = localStorage.getItem("premium_status") === "true";

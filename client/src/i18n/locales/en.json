@@ -1,0 +1,270 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "skip": "Skip",
+    "done": "Done",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "close": "Close"
+  },
+  "app": {
+    "name": "AjnabiCam",
+    "tagline": "Connect with strangers instantly",
+    "description": "Random Video Chat"
+  },
+  "splash": {
+    "loading": "Loading amazing connections..."
+  },
+  "language": {
+    "title": "Choose Your Language",
+    "subtitle": "Select your preferred language to continue",
+    "continue": "Continue",
+    "change": "Change Language"
+  },
+  "home": {
+    "title": "AjnabiCam",
+    "subtitle": "Connect with strangers instantly",
+    "startCall": "🚀 Milo Abhi!",
+    "features": {
+      "hdVideo": "HD Video",
+      "hdVideoDesc": "Crystal clear",
+      "secure": "Secure",
+      "secureDesc": "Encrypted",
+      "instant": "Instant",
+      "instantDesc": "Connect now"
+    },
+    "genderFilter": {
+      "title": "Gender Preference",
+      "anyone": "Anyone",
+      "anyoneDesc": "Connect with all genders",
+      "male": "Male",
+      "maleDesc": "Connect with males only",
+      "female": "Female",
+      "femaleDesc": "Connect with females only",
+      "unlock": "🎯 Unlock gender filtering with Premium!",
+      "upgradeNow": "Upgrade Now"
+    },
+    "terms": "By using AjnabiCam, you agree to our Terms of Service and Privacy Policy."
+  },
+  "chat": {
+    "title": "Chats",
+    "search": "Search chats and messages...",
+    "friends": "Friends",
+    "recentChats": "Recent Chats",
+    "noChats": "No chats yet",
+    "noChatsDesc": "Start a conversation to see your chats here",
+    "noResults": "No chats found",
+    "noResultsDesc": "No results for \"{{query}}\"",
+    "online": "Online",
+    "offline": "Offline",
+    "lastSeen": "Last seen {{time}}",
+    "justNow": "Just now",
+    "minutesAgo": "{{count}}m ago",
+    "hoursAgo": "{{count}}h ago",
+    "daysAgo": "{{count}}d ago",
+    "typeMessage": "Type a message...",
+    "send": "Send"
+  },
+  "videoChat": {
+    "title": "AjnabiCam",
+    "waiting": "Waiting for user to connect...",
+    "calling": "Calling {{name}}...",
+    "connected": "Connected",
+    "friendCall": "Friend Call",
+    "voiceOnly": "Voice Only",
+    "yourVoice": "Your Voice",
+    "partnerVoice": "{{name}}'s Voice",
+    "skip": "Skip",
+    "end": "End",
+    "switchToVideo": "Switch to Video",
+    "block": "Block",
+    "report": "Report",
+    "secretMode": "Secret Mode",
+    "secretModeActive": "Secret Mode Active - Messages disappear in 3s",
+    "theme": "Theme"
+  },
+  "premium": {
+    "title": "Upgrade to Premium! 💎",
+    "subtitle": "Unlock amazing features and enhance your chat experience",
+    "features": {
+      "voiceOnly": "🎙️ Voice-Only Mode - Audio calls without video",
+      "genderFilter": "🚻 Gender Filter - Choose who you want to chat with",
+      "unlimitedTime": "⏰ Unlimited Chat Time - No more time limits!",
+      "premiumBadge": "👑 Premium Badge - Show off your status",
+      "priorityMatching": "🎯 Priority Matching - Get connected faster"
+    },
+    "plans": {
+      "weekly": "Weekly Premium",
+      "monthly": "Monthly Premium",
+      "weeklyPrice": "₹99",
+      "monthlyPrice": "₹299",
+      "perWeek": "/week",
+      "perMonth": "/month",
+      "save": "Save ₹97!",
+      "mostPopular": "Most Popular! 🔥"
+    },
+    "cta": "🚀 Get Premium Now",
+    "paymentMethods": "💳 Pay easily with UPI (preselected), Cards, Wallets, or Netbanking",
+    "guarantee": "🔒 Secure payment • Cancel anytime • 💯 30-day money-back guarantee"
+  },
+  "profile": {
+    "title": "Profile",
+    "username": "Username",
+    "addPhoto": "Add Photo",
+    "premiumActive": "Premium Active",
+    "premiumActiveDesc": "Enjoying all premium features! ✨",
+    "upgradeToPremium": "Upgrade to Premium",
+    "upgradeDesc": "Unlock exclusive features and enhanced experience!",
+    "upgradeFeatures": "✓ Gender Filter • ✓ Voice Mode • ✓ Unlimited Time",
+    "referralRewards": "Referral Rewards",
+    "yourReferralId": "Your Referral ID",
+    "copy": "Copy",
+    "referralBenefit": "🎁 Refer 1 friend successfully = 24h Premium FREE!",
+    "referralDesc": "Share your code and both you and your friend get premium benefits",
+    "settings": "Settings",
+    "privacySettings": "Privacy Settings",
+    "notificationPreferences": "Notification Preferences",
+    "accountSettings": "Account Settings",
+    "language": "Language"
+  },
+  "friends": {
+    "title": "Friends",
+    "yourFriends": "Your Friends",
+    "unlimited": "Unlimited",
+    "free": "Free",
+    "upgrade": "Upgrade",
+    "reachedLimit": "🚫 You've reached the free limit of {{limit}} friends. Upgrade to Premium for unlimited friends!",
+    "noFriends": "No Friends Yet",
+    "noFriendsDesc": "Make friends by staying connected after video calls!",
+    "startMeeting": "Start Meeting People",
+    "addFriendsTip": "💡 Tip: After video calls, choose \"Stay Connected\" to add them as friends!",
+    "activeNow": "Active now",
+    "callNow": "Call Now",
+    "remove": "Remove",
+    "removeFriend": "Remove {{name}} from your friends list?"
+  },
+  "voice": {
+    "title": "Voice Chat",
+    "subtitle": "Voice-Only Mode",
+    "description": "Connect with people through voice conversations only. Perfect for those who prefer audio-only interactions.",
+    "premiumFeature": "Premium Feature",
+    "premiumDesc": "Voice-only mode is available for Premium users. Upgrade to unlock this feature!",
+    "features": {
+      "highQuality": "High Quality Audio",
+      "highQualityDesc": "Crystal clear voice conversations",
+      "privacyFocused": "Privacy Focused",
+      "privacyFocusedDesc": "No video, just voice connections",
+      "lowBandwidth": "Low Bandwidth",
+      "lowBandwidthDesc": "Works great on slower connections"
+    },
+    "startVoiceChat": "Start Voice Chat",
+    "requiresPremium": "Note: Voice-only mode requires Premium subscription"
+  },
+  "coins": {
+    "title": "Coin Store! 💰",
+    "currentBalance": "{{count}} Coins",
+    "earnFree": "Earn Free Coins",
+    "watchAd": "Watch Ad",
+    "watchAdDesc": "Get 4 coins instantly",
+    "referFriend": "Refer Friend",
+    "referFriendDesc": "Share & earn big",
+    "coinPacks": "Coin Packs",
+    "popular": "Popular!",
+    "bestValue": "Best Value!",
+    "bonus": "+{{count}} Bonus!",
+    "goPremium": "Go Premium!",
+    "goPremiumDesc": "Get unlimited chat time and never worry about coins again!",
+    "upgradeToPremium": "Upgrade to Premium",
+    "securePayments": "💳 Secure payments • 🔒 Safe transactions • 💯 Instant delivery",
+    "paymentMethods": "✓ UPI • ✓ Cards • ✓ Wallets • ✓ Net Banking"
+  },
+  "timer": {
+    "chatTime": "Chat Time",
+    "freeTimeLeft": "Free Time Left",
+    "timeRunningOut": "⏰ Time running out! Get ready to extend or upgrade.",
+    "timeUp": "Time's up!",
+    "timeUpDesc": "You've used your 7-minute free limit",
+    "continueQuestion": "Want to continue chatting with this person?",
+    "useCoins": "Use 10 Coins ({{available}} available)",
+    "upgradePremium": "Upgrade to Premium for Unlimited Time",
+    "exit": "Exit",
+    "tip": "💡 Tip: Watch ads or refer friends to earn more coins!",
+    "premiumUnlimited": "✨ {{user}} Premium - Enjoy 30-minute calls! 💕",
+    "partnerPremium": "(Partner Premium)"
+  },
+  "modals": {
+    "stayConnected": {
+      "title": "Stay Connected?",
+      "question": "Do you want to stay connected with {{name}}?",
+      "description": "You'll be added to each other's friends list and can video call anytime!",
+      "stayConnected": "Yes, Stay Connected! 💕",
+      "noThanks": "No, Thanks",
+      "waiting": "Waiting for {{name}}'s response..."
+    },
+    "secretChat": {
+      "title": "Secret Chat Mode",
+      "premiumOnly": "Premium Only",
+      "description": "{{status}} Secret mode is {{state}}. Messages will disappear after being read.",
+      "howItWorks": "How it works:",
+      "feature1": "• Messages disappear after 3 seconds",
+      "feature2": "• No message history is saved",
+      "feature3": "• Perfect for private conversations",
+      "feature4": "• Both users see the secret mode indicator",
+      "turnOn": "Turn ON Secret Mode",
+      "turnOff": "Turn OFF Secret Mode",
+      "upgrade": "Upgrade to Premium",
+      "upgradeDesc": "Secret chat mode is a premium feature. Upgrade to unlock!"
+    },
+    "block": {
+      "title": "Block this user?",
+      "description": "You won't be matched with this user again.",
+      "block": "Block"
+    },
+    "report": {
+      "title": "Report this user",
+      "reasons": {
+        "creep": "Is a creep",
+        "spam": "Spam",
+        "nudity": "Nudity",
+        "harassment": "Harassment",
+        "fake": "Fake profile",
+        "other": "Other"
+      },
+      "describe": "Describe the issue...",
+      "submit": "Submit"
+    }
+  },
+  "notifications": {
+    "friendOnline": "Friend Online",
+    "friendOnlineDesc": "{{name}} is online now - call them?",
+    "callNow": "Call Now",
+    "later": "Later",
+    "reportSubmitted": "Thank you for your report.",
+    "userBlocked": "User blocked. You won't be matched again.",
+    "coinsEarned": "🎉 You earned {{count}} coins for {{action}}!",
+    "premiumActivated": "🎉 Welcome to Premium! Your {{plan}} subscription is now active!",
+    "friendAdded": "🎉 You and {{name}} are now friends! You can find them in your Friends list.",
+    "friendLimitReached": "❌ Couldn't add {{name}} as friend. You've reached the free limit of 3 friends. Upgrade to Premium for unlimited friends!"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "network": "Network error. Please check your connection.",
+    "camera": "Camera access denied. Please allow camera access.",
+    "microphone": "Microphone access denied. Please allow microphone access.",
+    "suspended": "Account Suspended",
+    "suspendedDesc": "Your account has been suspended for 24 hours due to excessive reports.",
+    "tryAgainLater": "Please try again later.",
+    "ownReferral": "You cannot use your own referral code.",
+    "notEnoughCoins": "❌ Not enough coins! You need 10 coins to continue."
+  }
+}
