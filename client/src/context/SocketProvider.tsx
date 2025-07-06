@@ -23,7 +23,7 @@ export const SocketProvider = ({children} : {children: ReactNode}) => {
     useEffect(() => {
         if (!socket) {
             const socketUrl = import.meta.env.VITE_API_SERVER_URL || 
-                `http://${window.location.hostname.replace(/--\d+--/, '--80--')}`;
+                `ws://${window.location.hostname.replace(/--\d+--/, '--80--')}`;
             
             const newSocket = io(socketUrl, {
                 transports: ['websocket', 'polling'],
