@@ -27,7 +27,6 @@ export const SocketProvider = ({children} : {children: ReactNode}) => {
             
             const newSocket = io(socketUrl, {
                 transports: ['websocket', 'polling'],
-                secure: false,
                 timeout: 20000,
                 forceNew: true
             });
