@@ -22,17 +22,27 @@ export const SocketProvider = ({children} : {children: ReactNode}) => {
 
     useEffect(() => {
         if (!socket) {
-            const socketUrl = import.meta.env.VITE_API_SERVER_URL || 
-                `ws://${window.location.hostname.replace(/--\d+--/, '--80--')}`;
+            // Construct the correct server URL for the WebContainer environment
+            const hostname = window.location.hostname;
+            const socketUrl = hostname.includes('webcontainer') 
+                ? `http://${hostname.replace(/--\d+--/, '--80--')}`
+                : 'http://localhost:8000';
+            
+            console.log('Connecting to socket server:', socketUrl);
             
             const newSocket = io(socketUrl, {
-                transports: ['websocket', 'polling'],
-                timeout: 20000,
-                forceNew: true
+                transports: ['polling', 'websocket'], // Try polling first
+                timeout: 10000,
+                forceNew: true,
+                autoConnect: true,
+                reconnection: true,
+                reconnectionAttempts: 3,
+                reconnectionDelay: 1000,
             });
 
             newSocket.on('connect', () => {
                 console.log('Socket connected:', newSocket.id);
+                setSocket(newSocket);
             });
 
             newSocket.on('disconnect', () => {
@@ -40,11 +50,11 @@ export const SocketProvider = ({children} : {children: ReactNode}) => {
             });
 
             newSocket.on('connect_error', (error) => {
-                console.error('Socket connection error:', error);
+                console.log('Socket connection error:', error.message);
+                // Don't throw error, just log it
             });
 
-            setSocket(newSocket);
-
+            // Don't set socket immediately, wait for connection
             return () => {
                 if (newSocket && newSocket.connected) {
                     newSocket.close();

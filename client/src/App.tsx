@@ -16,7 +16,15 @@ import './App.css';
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
-  const [currentScreen, setCurrentScreen] = useState('home');
+
+  useEffect(() => {
+    // Show splash for 3 seconds
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleSplashComplete = () => {
     setShowSplash(false);

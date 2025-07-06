@@ -1,25 +1,31 @@
 import { Server, Socket } from "socket.io";
 import express from 'express';
 import http from 'http';
-import dotenv from 'dotenv';
-import cors from 'cors'; 
 
 const app = express();
 const server = http.createServer(app);
-dotenv.config();
 
-app.use(cors({
-    origin: '*',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-}));
+// Enable CORS for all origins
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
 
 const io = new Server(server, {
     cors: {
-        origin: '*',
-        methods: ['GET', 'POST']
+        origin: "*",
+        methods: ["GET", "POST"],
+        allowedHeaders: ["*"],
+        credentials: false
     },
-    transports: ['websocket', 'polling']
+    transports: ['polling', 'websocket'],
+    allowEIO3: true
 });
 
 interface User {
@@ -195,11 +201,16 @@ io.on('connection', (socket: Socket) => {
 })
 
 app.get('/', (req, res) => {
-    res.send("Server is running...")
+    res.json({ message: "AjnabiCam Server is running", status: "ok" });
+})
+
+app.get('/health', (req, res) => {
+    res.json({ status: "healthy", timestamp: new Date().toISOString() });
 })
 
 const PORT = process.env.PORT || 8000;
 
 server.listen(Number(PORT), '0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(`🚀 AjnabiCam Server is running on port ${PORT}`);
+  console.log(`📡 Socket.IO server ready for connections`);
 });
