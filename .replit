@@ -13,7 +13,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd server && npm install && npm run start:dev"
+args = "npm install --prefix server && npm run start:dev --prefix server"
 
 [[workflows.workflow]]
 name = "Start Client"
@@ -22,7 +22,7 @@ mode = "sequential"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && npm install && npm run dev"
+args = "npm install --prefix client && npm run dev --prefix client"
 
 [[workflows.workflow]]
 name = "Full Stack Dev"
@@ -31,11 +31,11 @@ mode = "parallel"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd server && npm install && npm run start:dev"
+args = "npm install --prefix server && npm run start:dev --prefix server"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "cd client && npm install && npm run dev -- --port 5000"
+args = "npm install --prefix client && npm run dev --prefix client -- --port 5000"
 
 [[ports]]
 localPort = 5000
